@@ -84,7 +84,8 @@ public class CitaMedica extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		table.setModel(new DefaultTableModel(// Usamos el método setModel para añadir un modelo de tabla con las filas 
+				//y columnas que le hemos dicho en el diseñador
 			new Object[][] {
 			},
 			new String[] {
@@ -107,17 +108,22 @@ public class CitaMedica extends JFrame {
 		        String telefono = tfTelefono.getText();
 
 		        
-		        java.util.Date fechaElegida = dateChooser.getDate();
+		        java.util.Date fechaElegida = dateChooser.getDate();//Capturamos la fecha elegida por el usuario
 
 		        
 		        if (!nombre.isEmpty() && !apellido.isEmpty() && !telefono.isEmpty() && fechaElegida != null) {
 		           
 		            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
 		            String fecha = sdf.format(fechaElegida);
-
+		            //Creamos un objeto SimpleDateFormat para que sea legible la fecha 
+		            //con sdf.format la pasamos al formato elegido. La guardamos como (String)
+		            
 		            
 		            DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+		            
+		            //Necesitamos el obtener con getModel el modelo de la tabla pero tenemos que castearlo porque si no da error
 		            modelo.addRow(new Object[]{nombre, apellido, telefono, fecha});
+		            //Añadimos la fila y la hacemos un array de objetos con los datos a almacenar
 
 		            
 		            tfNombre.setText("");
