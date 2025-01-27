@@ -160,26 +160,6 @@ public class CitaMedica extends JFrame {
 		
 		dateChooser.setBounds(227, 102, 199, 19);
 		contentPane.add(dateChooser);
-		// Obtener el modelo de la tabla
-				DefaultTableModel modelo = (DefaultTableModel) table.getModel();
-
-				
-				String nombre = tfNombre.getText();
-				String apellido = tfApellido.getText();
-				String telefono = tfTelefono.getText();
-
-				
-				if (!nombre.isEmpty() && !apellido.isEmpty() && !telefono.isEmpty() ) {
-				    
-				    modelo.addRow(new Object[]{nombre, apellido, telefono});//Si todo ok añadimos fila
-
-				    
-				    tfNombre.setText("");
-				    tfApellido.setText("");
-				    tfTelefono.setText("");
-				   
-				} else {
-				    JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
-				}
+	
 	}
 }
