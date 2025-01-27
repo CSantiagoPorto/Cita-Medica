@@ -12,6 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;//Mediante esta clase podemos obtener los datos de la tabla
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import com.toedter.calendar.JCalendar;
 import javax.swing.ImageIcon;
@@ -26,6 +29,7 @@ public class CitaMedica extends JFrame {
 	private JTextField tfNombre;
 	private JTextField tfApellido;
 	private JTextField tfTelefono;
+	private JDateChooser dateChooser;
 
 	/**
 	 * Launch the application.
@@ -94,6 +98,41 @@ public class CitaMedica extends JFrame {
 		btnAgregar.setBounds(167, 232, 113, 21);
 		contentPane.add(btnAgregar);
 		
+		btnAgregar.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		       
+		        String nombre = tfNombre.getText();
+		        String apellido = tfApellido.getText();
+		        String telefono = tfTelefono.getText();
+
+		        
+		        java.util.Date fechaElegida = dateChooser.getDate();
+
+		        
+		        if (!nombre.isEmpty() && !apellido.isEmpty() && !telefono.isEmpty() && fechaElegida != null) {
+		           
+		            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
+		            String fecha = sdf.format(fechaElegida);
+
+		            
+		            DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+		            modelo.addRow(new Object[]{nombre, apellido, telefono, fecha});
+
+		            
+		            tfNombre.setText("");
+		            tfApellido.setText("");
+		            tfTelefono.setText("");
+		            dateChooser.setDate(null);
+		        } else {
+		            
+		            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos correctamente.");
+		        }
+		    }
+		});
+
+
+		
 
 		
 		tfNombre = new JTextField();
@@ -111,7 +150,8 @@ public class CitaMedica extends JFrame {
 		contentPane.add(tfTelefono);
 		tfTelefono.setColumns(10);
 		
-		JDateChooser dateChooser = new JDateChooser();
+		dateChooser = new JDateChooser();
+		
 		dateChooser.setBounds(227, 102, 199, 19);
 		contentPane.add(dateChooser);
 		// Obtener el modelo de la tabla
