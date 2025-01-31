@@ -113,14 +113,16 @@ public class CitaMedica extends JFrame {
 
 		        
 		        java.util.Date fechaElegida = dateChooser.getDate();//Capturamos la fecha elegida por el usuario
-
+		        //Ahora la fecha está en fechaElegida
 		        
+		        
+		        //Comprobamos los campos
 		        if (!nombre.isEmpty() && !apellido.isEmpty() && !telefono.isEmpty() && fechaElegida != null) {
 		           
 		            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
 		            String fecha = sdf.format(fechaElegida);
 		            //Creamos un objeto SimpleDateFormat para que sea legible la fecha 
-		            //con sdf.format la pasamos al formato elegido. La guardamos como (String)
+		            //con sdf.format la pasamos al formato elegido y le pasamos fecha elegida que contiene la elecciónd el dateChooser. La guardamos como (String)
 		            
 		            
 		            DefaultTableModel modelo = (DefaultTableModel) table.getModel();
