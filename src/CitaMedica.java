@@ -20,6 +20,7 @@ import com.toedter.calendar.JCalendar;
 import javax.swing.ImageIcon;
 import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Toolkit;
 
 public class CitaMedica extends JFrame {
 
@@ -51,9 +52,12 @@ public class CitaMedica extends JFrame {
 	 * Create the frame.
 	 */
 	public CitaMedica() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CitaMedica.class.getResource("/imágenes/icons8-calendar-48.png")));
+		setTitle("Agendar Cita Médica");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setToolTipText("Cita Médica");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -95,7 +99,7 @@ public class CitaMedica extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnAgregar = new JButton(" Agregar Cita");
-		btnAgregar.setBackground(SystemColor.textHighlight);
+		btnAgregar.setBackground(SystemColor.activeCaption);
 		btnAgregar.setBounds(167, 232, 113, 21);
 		contentPane.add(btnAgregar);
 		
@@ -132,7 +136,7 @@ public class CitaMedica extends JFrame {
 		            dateChooser.setDate(null);
 		        } else {
 		            
-		            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos correctamente.");
+		            JOptionPane.showMessageDialog(null, "Faltan campos por copmpletar");
 		        }
 		    }
 		});
